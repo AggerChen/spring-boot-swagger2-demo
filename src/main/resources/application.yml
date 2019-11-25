@@ -1,0 +1,3 @@
+# 是否开启swagger API文档
+swagger2:
+  enable: true

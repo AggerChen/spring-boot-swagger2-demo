@@ -14,7 +14,7 @@ import java.util.Date;
  **/
 @Data
 @ApiModel("用户类")
-public class User {
+public class UserVO {
 
     @ApiModelProperty( value= "用户id",required = true,example = "123",notes = "用户id")
     private Long userId;
@@ -26,11 +26,13 @@ public class User {
     private String email;
     @ApiModelProperty(value = "用户生日",required = true,example = "2019-11-25T06:58:37.318Z",notes = "用户生日")
     private Date birthday;
+    @ApiModelProperty(value = "部门id",required = false,example = "100",notes = "部门id")
+    private Long deptId;
 
-    public User() {
+    public UserVO() {
     }
 
-    public User(Long userId, String userName, Integer age, String email, Date birthday) {
+    public UserVO(Long userId, String userName, Integer age, String email, Date birthday) {
         this.userId = userId;
         this.userName = userName;
         this.age = age;

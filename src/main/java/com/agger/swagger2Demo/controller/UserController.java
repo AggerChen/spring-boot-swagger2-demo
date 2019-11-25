@@ -1,7 +1,7 @@
 package com.agger.swagger2Demo.controller;
 
 import com.agger.swagger2Demo.vo.ResultVO;
-import com.agger.swagger2Demo.vo.User;
+import com.agger.swagger2Demo.vo.UserVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.function.Consumer;
 
 /**
  * @program: UserController
@@ -23,15 +22,15 @@ import java.util.function.Consumer;
 @RequestMapping("user")
 public class UserController {
 
-    private final static List<User> userList = new ArrayList<>();
+    private final static List<UserVO> userList = new ArrayList<>();
     {
-        userList.add(new User(1L,"张三",20,"aaaa@qq.com",new Date()));
-        userList.add(new User(2L,"李四",25,"bbbb@qq.com",new Date()));
+        userList.add(new UserVO(1L,"张三",20,"aaaa@qq.com",new Date()));
+        userList.add(new UserVO(2L,"李四",25,"bbbb@qq.com",new Date()));
     }
 
     @ApiOperation("查询用户列表")
     @GetMapping("list")
-    public ResultVO<List<User>> getUserList(){
+    public ResultVO<List<UserVO>> getUserList(){
 
         ResultVO result = new ResultVO();
         result.setCode(0);
@@ -41,9 +40,8 @@ public class UserController {
     }
 
     @ApiOperation("新增用户")
-    @ApiImplicitParam(name = "user", value = "用户信息", dataType = "User")
     @PostMapping("add")
-    public ResultVO addUser(@RequestBody @ModelAttribute User user){
+    public ResultVO addUser(@RequestBody @ModelAttribute UserVO user){
         if(user!=null){
             userList.add(user);
         }
@@ -55,12 +53,12 @@ public class UserController {
     }
 
     @ApiOperation("查询用户")
-    @ApiImplicitParam(name = "userId", value = "用户id", dataType = "Long")
+    @ApiImplicitParam(name = "userId", value = "用户id")
     @PostMapping("queryUser")
-    public ResultVO<User> queryUser(@RequestBody Long userId){
-        User u = null;
+    public ResultVO<UserVO> queryUser(@RequestBody Long userId){
+        UserVO u = null;
         if(userId!=null){
-            for(User user:userList){
+            for(UserVO user:userList){
                 if(user.getUserId()==userId){
                     u = user;
                     break;
