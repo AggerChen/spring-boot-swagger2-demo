@@ -29,17 +29,19 @@ public class Swagger2Config {
     @Bean("userApis")
     public Docket userApis() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("用户模块")      // 分组
+//                .groupName("用户模块")      // 分组
                 .select()
-                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
-                .paths(PathSelectors.regex("/user.*"))
+//                .apis(RequestHandlerSelectors.basePackage("com.agger.swagger2Demo.controller"))     // 匹配包路径
+                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))       // 匹配包含的指定注解
+//                .paths(PathSelectors.regex("/user.*"))
+                .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo())
                 .enable(enable);   // 是否开启API
     }
 
 
-    @Bean("deptApis")
+/*    @Bean("deptApis")
     public Docket deptApis() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("部门模块")
@@ -49,7 +51,7 @@ public class Swagger2Config {
                 .build()
                 .apiInfo(apiInfo())
                 .enable(enable);
-    }
+    }*/
 
 
     /**

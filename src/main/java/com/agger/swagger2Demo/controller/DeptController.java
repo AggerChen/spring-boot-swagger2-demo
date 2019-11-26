@@ -19,7 +19,7 @@ import java.util.List;
  * @author chenhx
  * @date 2019-11-25 21:36:17
  */
-@Api("部门管理")
+@Api(value="部门管理",tags = "部门管理控制")
 @RestController
 @RequestMapping("dept")
 public class DeptController {

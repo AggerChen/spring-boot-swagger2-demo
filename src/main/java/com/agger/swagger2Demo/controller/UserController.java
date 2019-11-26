@@ -5,6 +5,7 @@ import com.agger.swagger2Demo.vo.UserVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.List;
  * @author: chenhx
  * @create: 2019-11-25 14:20
  **/
-@Api("用户管理")
+@Api(value="用户管理",tags = "用户管理控制")
 @RestController
 @RequestMapping("user")
 public class UserController {
@@ -41,7 +42,7 @@ public class UserController {
 
     @ApiOperation("新增用户")
     @PostMapping("add")
-    public ResultVO addUser(@RequestBody @ModelAttribute UserVO user){
+    public ResultVO addUser(@RequestBody UserVO user){
         if(user!=null){
             userList.add(user);
         }
