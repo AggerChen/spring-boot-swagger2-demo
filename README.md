@@ -436,17 +436,17 @@ public class ResultVO<T> {
 #### 2.4 访问UI查看生成的API
 启动项目，访问地址 http://localhost:8080/swagger-ui.html 就可以查看到我们的API文档了。
 1. 如果在配置文件中配置了多个@Bean分组，则在右上角可以切换分组显示接口API
-![5e4ae2c35c8bffe117cf457e40cc406a.png](en-resource://database/1223:1)
+![1](https://github.com/AggerChen/imageLibrary/blob/master/swagger2/Image1.png?raw=true)
 2. 接口参数为model类型，如果model中有写example字段，则可以方便的显示请求示例。
 3. 点击每个方法的 "Try it out" 按钮，则可以立即测试接口
-![c5496cf7487527ba4262b978166d28b8.png](en-resource://database/1225:1)
-![a1df012fec6d56044660dd61683774ac.png](en-resource://database/1227:1)
+![2](https://github.com/AggerChen/imageLibrary/blob/master/swagger2/Image2.png?raw=true)
+![3](https://github.com/AggerChen/imageLibrary/blob/master/swagger2/Image3.png?raw=true)
 4. 参数在路径中方式的接口，也可以只管的查看到参数说明
-![ff26b6766cd09dfd391fa67de3db2710.png](en-resource://database/1229:1)
+![4](https://github.com/AggerChen/imageLibrary/blob/master/swagger2/Image4.png?raw=true)
 5. 在接口的最下面有个Models分类，里面存放的是当前组中的model示例，方便前端人员查看字段。
-![d28736f5e973c1d9490af11f4c3ebccf.png](en-resource://database/1231:1)
+![5](https://github.com/AggerChen/imageLibrary/blob/master/swagger2/Image5.png?raw=true)
 6. 接口多参数，分model方式的接口
-![495c783ad25bdac7b363e2cf7b5a3b6e.png](en-resource://database/1233:1)
+![6](https://github.com/AggerChen/imageLibrary/blob/master/swagger2/Image6.png?raw=true)
 
 #### 2.5 注意事项
 1. 想要接口和接口的响应中有具体的字段，则你的model必须使用@ApiModel注解表示，包括响应实体ResultVO。
