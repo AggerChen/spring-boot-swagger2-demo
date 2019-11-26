@@ -2,15 +2,17 @@ package com.agger.swagger2Demo.controller;
 
 import com.agger.swagger2Demo.vo.DeptVO;
 import com.agger.swagger2Demo.vo.ResultVO;
-import com.agger.swagger2Demo.vo.UserVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.*;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,7 +23,7 @@ import java.util.List;
  */
 @Api(value="部门管理",tags = "部门管理控制")
 @RestController
-@RequestMapping("dept")
+@RequestMapping("/dept")
 public class DeptController {
 
     private final static List<DeptVO> deptList = new ArrayList<>();
@@ -31,7 +33,7 @@ public class DeptController {
     }
 
     @ApiOperation("查询部门列表")
-    @GetMapping("list")
+    @GetMapping("/list")
     public ResultVO<List<DeptVO>> getDeptList(){
 
         ResultVO result = new ResultVO();
@@ -41,16 +43,27 @@ public class DeptController {
         return result;
     }
 
+    /**
+     * @Title: addDept
+     * @Description: 接口多参数使用方式
+     * @author chenhx
+     * @date 2019-11-26 20:55:56
+     */
     @ApiOperation("新增部门")
-    @PostMapping("add")
-    public ResultVO addDept(@RequestBody DeptVO dept){
-        if(dept!=null){
-            deptList.add(dept);
-        }
-
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "deptId",value = "部门id",required = true),
+            @ApiImplicitParam(name = "deptName",value = "部门名称",required = true)
+    })
+    @PostMapping("/add")
+    public ResultVO addDept(Long deptId,String deptName){
         ResultVO result = new ResultVO();
-        result.setCode(0);
-        result.setMsg("新增成功");
+        if(deptId!=null&& StringUtils.isNotBlank(deptName)){
+            deptList.add(new DeptVO(deptId,deptName));
+            result.setCode(0);
+            result.setMsg("新增成功");
+        }else{
+            result.setMsg("新增失败");
+        }
         return result;
     }
 

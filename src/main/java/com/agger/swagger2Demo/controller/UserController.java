@@ -89,7 +89,7 @@ public class UserController {
     }
 
     /**
-     * @Title: queryUserById
+     * @Title: queryUserByName
      * @Description: 使用@ApiImplicitParam注解只在方法上描述参数，对源代码没有侵入，比较推荐
      * @author chenhx
      * @date 2019-11-26 17:09:36
@@ -120,13 +120,14 @@ public class UserController {
     }
 
     /**
-     * @Title: queryUserById
-     * @Description: RESTfull风格的接口方法
+     * @Title: queryUserEmail
+     * @Description: 参数在路径中的接口方法，需要指定@ApiImplicitParam属性paramType为path
      * @author chenhx
      * @date 2019-11-26 17:09:36
      */
     @ApiOperation("查询用户的email")
     @PostMapping("/queryUserEmail/{id}")
+    @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "long", paramType = "path")
     public ResultVO<String> queryUserEmail( @PathVariable("id") Long userId){
         String email = null;
         if(userId!=null){
